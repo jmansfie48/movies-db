@@ -1,4 +1,4 @@
-# movies-db
+# Movies DB
 Service with a database backend for storing and editing a movie collection
 
 ## Agile Board
