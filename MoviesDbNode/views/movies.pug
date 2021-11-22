@@ -17,16 +17,24 @@ block content
                 th.movie-rating Rating
                 th.movie-actions Actions
         tbody
-        for movie in movies 
+        for movie, i in movies 
             tr
-                td.movie-title #{movie.title}
-                td.movie-format #{movie.format}
-                td.movie-length #{movie.length}
-                td.movie-release-year #{movie.releaseYear}
-                td.movie-rating #{movie.rating}
-                td.movie-actions
-                    a.movie-action-link(href='/movies/update/' + movie.guid, title="Edit") Edit
-                    a.movie-action-link(href='/movies/delete/' + movie.guid, title="Delete") Delete
+                td.movie-title
+                    input(type="text" value=movie.title minlength=1 maxlength=50 id='movie-title-' + i)
+                td.movie-format
+                    select(id='movie-format-' + i)
+                        for format, j in movieFormats
+                            option(value=format selected=movie.format===format) #{format}                                 
+                td.movie-length
+                    input(type="number" value=movie.length id='movie-length-' + i min=0 max=500)  
+                td.movie-release-year
+                    input(type="number" value=movie.releaseYear id='movie-release-year-' + i min=1800 max=2100 step=1) 
+                td.movie-rating
+                    input(type="number" value=movie.rating id='movie-rating-' + i min=1 max=5 step=1) 
+                td.movie-actions(id='movie-actions-' + i)
+                    input(value=movie.guid type="hidden" id='movie-guid-' + i)
+                    a.movie-action-link(onclick='updateMovie(' + i + ')' title="Update" id='movie-edit-' + i data-id=i) Update
+                    a.movie-action-link(onclick='deleteMovie(' + i + ')' title="Delete" id='movie-delete-' + i data-id=i) Delete
 
 
   

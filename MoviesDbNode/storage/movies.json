@@ -1,18 +1,1 @@
-[
-  {
-    "guid": "9b9f9410-c0a4-4f19-bb83-49411aaa4e29",
-    "title": "Dune",
-    "format": "Streaming",
-    "releaseYear": 2021,
-    "length": 155,
-    "rating": 5
-  },
-  {
-    "guid": "8bf8ebaf-6eca-4585-848c-1e5980da4ed3",
-    "title": "Mrs. Doubtfire",
-    "format": "VHS",
-    "releaseYear": 1993,
-    "length": 125,
-    "rating": 4
-  }
-]
+[{"title":"Dune","format":"b93b119a-4719-4d19-b43f-f7c5181fc55d","length":155,"releaseYear":2021,"rating":5,"guid":"9b9f9410-c0a4-4f19-bb83-49411aaa4e29","userGuid":"6a313c2f-8a06-4ad0-a825-823be1b0a23b"},{"title":"Mrs. Doubtfire","format":"b93b119a-4719-4d19-b43f-f7c5181fc55d","length":125,"releaseYear":1993,"rating":4,"guid":"8bf8ebaf-6eca-4585-848c-1e5980da4ed3","userGuid":"6a313c2f-8a06-4ad0-a825-823be1b0a23b"},{"guid":"708fc296-a4ef-4695-bbd4-9786ea86b8d2","userGuid":"c97a5b6f-9110-4b1c-b0cc-2104db1fceee","formatGuid":"dd65914b-93f3-49ca-bb57-243d10c4440f","rating":3,"title":"Dune","releaseYear":2021,"length":155},{"guid":"8ba00b44-bf9b-4499-95fa-6607590fe2c4","userGuid":"c97a5b6f-9110-4b1c-b0cc-2104db1fceee","formatGuid":"b93b119a-4719-4d19-b43f-f7c5181fc55d","rating":1,"title":"Mrs. Doubtfire","releaseYear":1993,"length":125}]

@@ -19,7 +19,7 @@ app.set('view engine', 'pug');
 const { auth } = require('express-openid-connect');
 
 const config = {
-    authRequired: true,
+    authRequired: false,
     auth0Logout: true,
     baseURL: 'http://localhost:1337',
     clientID: 'mGDlrZzzWSRiMj0yKmAK99prXN1XTRZ9',

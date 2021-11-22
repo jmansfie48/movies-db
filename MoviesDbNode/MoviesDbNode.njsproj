@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="public\javascripts\page.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\movies.js" />
     <Content Include="routes\index.js" />
     <Content Include="package.json" />
@@ -37,10 +40,8 @@
     <Content Include="README.md" />
     <Content Include="storage\movie-formats.json" />
     <Content Include="storage\movies.json" />
-    <Content Include="storage\user-movies.json" />
     <Content Include="storage\users.json" />
     <Content Include="views\movies.pug" />
-    <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
   </ItemGroup>
