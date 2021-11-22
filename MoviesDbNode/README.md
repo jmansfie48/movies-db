@@ -5,6 +5,10 @@ Service with a database backend for storing and editing a movie collection
 An Agile Board for this exercise is available on Trello at https://trello.com/b/0HEmhdya/agile-board.
 
 ## Tech Stack
+
+### Cloud Hosting
+The app is deployed on AWS EC2. I followed guidance provided at https://ourcodeworld.com/articles/read/977/how-to-deploy-a-node-js-application-on-aws-ec2-server.
+
 ### Back End
 I am using Node.js + Express (https://expressjs.com/). This is a well-known, lightweight framework for building web applications. 
 
