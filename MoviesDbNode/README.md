@@ -9,7 +9,8 @@ An Agile Board for this exercise is available on Trello at https://trello.com/b/
 I am using Node.js + Express (https://expressjs.com/). This is a well-known, lightweight framework for building web applications. 
 
 ### Authentication
-I am using the Auth0 authentication via the Auth0 SDK (https://auth0.com/docs/quickstart/spa/vanillajs). Auth0 is a well-recognized authentication service that integrates easily with other parts of the application.
+I am using Auth0 authentication via the Auth0 SDK (https://auth0.com/docs/quickstart/spa/vanillajs). 
+Auth0 is a well-recognized authentication service with easy-to-implement access control, and it integrates easily with other parts of the application.
 
 ### Database
 Local JSON storage; I just wanted to get things working and would like to replace it with something more conventional if time permits.
