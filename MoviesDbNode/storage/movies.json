@@ -1,0 +1,18 @@
+[
+  {
+    "guid": "9b9f9410-c0a4-4f19-bb83-49411aaa4e29",
+    "title": "Dune",
+    "format": "Streaming",
+    "releaseYear": 2021,
+    "length": 155,
+    "rating": 5
+  },
+  {
+    "guid": "8bf8ebaf-6eca-4585-848c-1e5980da4ed3",
+    "title": "Mrs. Doubtfire",
+    "format": "VHS",
+    "releaseYear": 1993,
+    "length": 125,
+    "rating": 4
+  }
+]

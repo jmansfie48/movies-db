@@ -1,0 +1,14 @@
+[
+  {
+    "guid": "b93b119a-4719-4d19-b43f-f7c5181fc55d",
+    "description": "VHS"
+  },
+  {
+    "guid": "d3608201-b286-45d9-b3cb-a7ad2675e68b",
+    "description": "DVD"
+  },
+  {
+    "guid": "dd65914b-93f3-49ca-bb57-243d10c4440f",
+    "description": "Streaming"
+  }
+]

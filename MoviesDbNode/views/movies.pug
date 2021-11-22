@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  if movies.length === 0 
+    p You do not have any movies.
+    a(type="button" href="/add-movie", title="Add a movie") Add a movie
+  else
+      table
+        thead
+            tr
+                th Title
+                th Format
+                th.movie-length Length
+                th.movie-release-year Year
+                th.movie-rating Rating
+                th.movie-actions Actions
+        tbody
+        for movie in movies 
+            tr
+                td.movie-title #{movie.title}
+                td.movie-format #{movie.format}
+                td.movie-length #{movie.length}
+                td.movie-release-year #{movie.releaseYear}
+                td.movie-rating #{movie.rating}
+                td.movie-actions
+                    a.movie-action-link(href='/movies/update/' + movie.guid, title="Edit") Edit
+                    a.movie-action-link(href='/movies/delete/' + movie.guid, title="Delete") Delete
+
+
+  
