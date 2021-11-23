@@ -23,8 +23,8 @@ block content
                     input(type="text" value=movie.title minlength=1 maxlength=50 id='movie-title-' + i)
                 td.movie-format
                     select(id='movie-format-' + i)
-                        for format, j in movieFormats
-                            option(value=format selected=movie.format===format) #{format}                                 
+                        for format in movieFormats
+                            option(value=format selected=(movie.format===format)) #{format}                                 
                 td.movie-length
                     input(type="number" value=movie.length id='movie-length-' + i min=0 max=500)  
                 td.movie-release-year

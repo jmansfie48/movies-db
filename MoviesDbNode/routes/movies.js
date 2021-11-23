@@ -250,7 +250,7 @@ function movieModel(title, format, length, releaseYear, rating) {
     }
 
     movie.title = title;
-    movie.format = movieFormat.guid;
+    movie.formatGuid = movieFormat.guid;
     movie.length = length;
     movie.releaseYear = releaseYear;
     movie.rating = rating;
