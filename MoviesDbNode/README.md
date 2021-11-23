@@ -1,8 +1,11 @@
 # Movies DB
-Service with a database backend for storing and editing a movie collection
+Web application with a database backend for storing and editing a movie collection
 
 ## Agile Board
 An Agile Board for this exercise is available on Trello at https://trello.com/b/0HEmhdya/agile-board.
+
+## Demo
+Visit http://ec2-54-165-167-218.compute-1.amazonaws.com:3000/ to see the application in action.
 
 ## Tech Stack
 
@@ -20,4 +23,5 @@ Auth0 is a well-recognized authentication service with easy-to-implement access 
 Local JSON storage; I just wanted to get things working and would like to replace it with something more conventional if time permits.
 
 ### Front End
-HTML page built Pug template engine for Node.js + Express (https://pugjs.org/api/getting-started.html); Simple implementation that afforded me the functionality I needed.
+HTML page built using the Pug template engine for Node.js + Express (https://pugjs.org/api/getting-started.html).
+Simple implementation that afforded me the functionality I needed.
