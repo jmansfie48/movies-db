@@ -1,13 +1,40 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  if movies.length === 0 
-    p You do not have any movies.
-    a(type="button" href="/add-movie", title="Add a movie") Add a movie
-  else
-      table
+  div.clear
+    h1.float-left #{title}
+    h1.float-right #{userEmail}
+  div.clear 
+    a.float-right(href="/logout", title="Log Out") Log Out
+  table
+        caption Add a Movie
+            thead
+                tr
+                    th Title
+                    th Format
+                    th.movie-length Length
+                    th.movie-release-year Year
+                    th.movie-rating Rating
+                    th.movie-actions Actions
+            tbody
+                tr
+                    td.movie-title
+                        input(type="text" minlength=1 maxlength=50 id='new-movie-title')
+                    td.movie-format
+                        select(id='new-movie-format')
+                            for format in movieFormats
+                                option(value=format) #{format}                                
+                    td.movie-length
+                        input(type="number" id='new-movie-length' min=0 max=500)  
+                    td.movie-release-year
+                        input(type="number" id='new-movie-release-year' min=1800 max=2100 step=1) 
+                    td.movie-rating
+                        input(type="number" id='new-movie-rating' min=1 max=5 step=1) 
+                    td.movie-actions(id='new-movie-actions')
+                        button.movie-action-link(onclick='addMovie()' title="Add" id='new-movie-add') Add
+                        button.movie-action-link(onclick='resetAddFields()' title="Reset" id='new-movie-reset') Reset
+  if movies.length > 0 
+    table
         caption Movies I Own
         thead
             tr
@@ -34,33 +61,7 @@ block content
                         input(type="number" value=movie.rating id='movie-rating-' + i min=1 max=5 step=1) 
                     td.movie-actions(id='movie-actions-' + i)
                         input(value=movie.guid type="hidden" id='movie-guid-' + i)
-                        a.movie-action-link(onclick='updateMovie(' + i + ')' title="Update" id='movie-edit-' + i data-id=i) Update
-                        a.movie-action-link(onclick='deleteMovie(' + i + ')' title="Delete" id='movie-delete-' + i data-id=i) Delete
-  
-      table
-        caption Add a Movie
-            thead
-                tr
-                    th Title
-                    th Format
-                    th.movie-length Length
-                    th.movie-release-year Year
-                    th.movie-rating Rating
-                    th.movie-actions Actions
-            tbody
-                tr
-                    td.movie-title
-                        input(type="text" minlength=1 maxlength=50 id='new-movie-title')
-                    td.movie-format
-                        select(id='new-movie-format')
-                            for format in movieFormats
-                                option(value=format) #{format}                                
-                    td.movie-length
-                        input(type="number" id='new-movie-length' min=0 max=500)  
-                    td.movie-release-year
-                        input(type="number" id='new-movie-release-year' min=1800 max=2100 step=1) 
-                    td.movie-rating
-                        input(type="number" id='new-movie-rating' min=1 max=5 step=1) 
-                    td.movie-actions(id='new-movie-actions')
-                        a.movie-action-link(onclick='addMovie()' title="Add" id='new-movie-add') Add
-                        a.movie-action-link(onclick='resetAddFields()' title="Reset" id='new-movie-reset') Reset
+                        button.movie-action-link(onclick='updateMovie(' + i + ')' title="Update" id='movie-edit-' + i data-id=i) Update
+                        button.movie-action-link(onclick='deleteMovie(' + i + ')' title="Delete" id='movie-delete-' + i data-id=i) Delete
+  else
+    div.clear.message You do not currently have any movies.

@@ -30,11 +30,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="coordination\coordination.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="data-access\data.access.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="domain\domain.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="ui\display.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\javascripts\page.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\movies.js" />
-    <Content Include="routes\index.js" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
@@ -46,9 +57,13 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="domain\" />
+    <Folder Include="data-access\" />
+    <Folder Include="coordination\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
+    <Folder Include="ui\" />
     <Folder Include="storage\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />

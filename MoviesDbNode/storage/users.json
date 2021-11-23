@@ -1,14 +1,1 @@
-[
-  {
-    "auth_id": "6198034893d5400069c4875e",
-    "guid": "6a313c2f-8a06-4ad0-a825-823be1b0a23b",
-    "username": "jason.p.mansfield@gmail.com",
-    "name": "Jason Mansfield"
-  },
-  {
-    "auth_id": "619bbe77a9ee1000718474a8",
-    "guid": "c97a5b6f-9110-4b1c-b0cc-2104db1fceee",
-    "username": "jmansfie@gmail.com",
-    "name": "Other Login"
-  }
-]
+[{"auth_id":"6198034893d5400069c4875e","guid":"6a313c2f-8a06-4ad0-a825-823be1b0a23b","username":"jason.p.mansfield@gmail.com"},{"auth_id":"619bbe77a9ee1000718474a8","guid":"c97a5b6f-9110-4b1c-b0cc-2104db1fceee","username":"jmansfie@gmail.com"},{"guid":"943255a4-7060-4102-9518-15cdc6087175","auth_id":"619cf9eb93d5400069c5f9eb","email":"jpm2@datatel.com"}]
