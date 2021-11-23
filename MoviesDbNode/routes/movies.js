@@ -22,7 +22,37 @@ router.get('/', requiresAuth(), function (req, res) {
     res.render('movies', { title: 'My Movies', movies: myMovies.movies, movieFormats: myMovies.formats });
 });
 
-/* PUT movie */
+/* POST add a movie */
+router.post('/add', requiresAuth(), function (req, res) {
+
+    // Extract movie information
+    var add = req.body;
+    var guid = generateGuid();
+
+    // Get authenticated user
+    var userGuid = userGuidForAuthId(req);
+
+    // Unlikely, but check if any movies have the generated GUID
+    var movieWithGuid;
+    var allMovies = getAllMovies();
+    movieWithGuid = getMovie(allMovies, guid);
+    if (!movieWithGuid) {
+        // TODO: Loop until we have an unused GUID
+        guid = generateGuid();
+    }
+
+    // Add the movie to storage
+    try {
+        var storageReadyMovie = convertMovieUpdateToStoredMovie(add, guid, userGuid);
+        allMovies.push(storageReadyMovie);
+        var updatedMovies = updateMovies(allMovies);
+        res.status(200).send('Movie successfully added.');
+    } catch (err) {
+        res.status(400).send(err);
+    }    
+});
+
+/* PUT update a movie */
 router.put('/update', requiresAuth(), function (req, res) {
 
     // Extract movie information
@@ -57,9 +87,36 @@ router.put('/update', requiresAuth(), function (req, res) {
     }
 });
 
-/* DELETE movie */
-router.delete('/delete', requiresAuth(), function (req, res) {
+/* DELETE a movie */
+router.delete('/delete/:guid', requiresAuth(), function (req, res) {
 
+    // Extract guid of movie to delete
+    var deleteGuid;
+    var params = req.params;
+    if (params) {
+        deleteGuid = req.params.guid;
+    }
+
+    // Get authenticated user
+    var userGuid = userGuidForAuthId(req);
+
+    var moviesForUser = getMoviesForUser(userGuid);
+    var movieToDelete = getMovie(moviesForUser, deleteGuid);
+    if (!movieToDelete) {
+        res.status(404).send('Could not find movie ' + deleteGuid + ' for user with ID ' + userGuid);
+    } else {
+        var allMovies = getAllMovies();
+        var movieIndex = allMovies.findIndex(m => m.guid === deleteGuid);
+        if (movieIndex > -1) {
+            allMovies.splice(movieIndex, 1);
+        }
+        try {
+            var updatedMovies = updateMovies(allMovies);
+            res.status(200).send('Movie successfully deleted.');
+        } catch (err) {
+            res.status(400).send(err);
+        }
+    }
 });
 
 // UI: Display model for showing movies
@@ -183,6 +240,14 @@ function getMovie(movies, guid) {
         movie = movieWithGuid;
     }
     return movie;
+}
+
+// DATA: Generate a GUID
+function generateGuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
 
 // COORDINATION/DOMAIN: Convert movie updates (front-end) to storage-ready movie data

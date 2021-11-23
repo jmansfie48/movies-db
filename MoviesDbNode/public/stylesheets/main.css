@@ -23,7 +23,7 @@ tr {
 td, th {
     text-align: left;
     border: 1px solid #000;
-    padding: 3px;
+    padding: .5rem;
 }
 .movie-title {
     width: 40%;
@@ -55,4 +55,10 @@ td, th {
 
 .movie-action-link:not(:first-child) {
     padding-left: .5rem;
+}
+
+caption {
+    text-align: left;
+    padding: .5rem;
+    font-weight: bolder; 
 }

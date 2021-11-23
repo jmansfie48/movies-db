@@ -8,6 +8,7 @@ block content
     a(type="button" href="/add-movie", title="Add a movie") Add a movie
   else
       table
+        caption Movies I Own
         thead
             tr
                 th Title
@@ -17,24 +18,49 @@ block content
                 th.movie-rating Rating
                 th.movie-actions Actions
         tbody
-        for movie, i in movies 
-            tr
-                td.movie-title
-                    input(type="text" value=movie.title minlength=1 maxlength=50 id='movie-title-' + i)
-                td.movie-format
-                    select(id='movie-format-' + i)
-                        for format in movieFormats
-                            option(value=format selected=(movie.format===format)) #{format}                                 
-                td.movie-length
-                    input(type="number" value=movie.length id='movie-length-' + i min=0 max=500)  
-                td.movie-release-year
-                    input(type="number" value=movie.releaseYear id='movie-release-year-' + i min=1800 max=2100 step=1) 
-                td.movie-rating
-                    input(type="number" value=movie.rating id='movie-rating-' + i min=1 max=5 step=1) 
-                td.movie-actions(id='movie-actions-' + i)
-                    input(value=movie.guid type="hidden" id='movie-guid-' + i)
-                    a.movie-action-link(onclick='updateMovie(' + i + ')' title="Update" id='movie-edit-' + i data-id=i) Update
-                    a.movie-action-link(onclick='deleteMovie(' + i + ')' title="Delete" id='movie-delete-' + i data-id=i) Delete
-
-
+            for movie, i in movies 
+                tr
+                    td.movie-title
+                        input(type="text" value=movie.title minlength=1 maxlength=50 id='movie-title-' + i)
+                    td.movie-format
+                        select(id='movie-format-' + i)
+                            for format in movieFormats
+                                option(value=format selected=(movie.format===format)) #{format}                                 
+                    td.movie-length
+                        input(type="number" value=movie.length id='movie-length-' + i min=0 max=500)  
+                    td.movie-release-year
+                        input(type="number" value=movie.releaseYear id='movie-release-year-' + i min=1800 max=2100 step=1) 
+                    td.movie-rating
+                        input(type="number" value=movie.rating id='movie-rating-' + i min=1 max=5 step=1) 
+                    td.movie-actions(id='movie-actions-' + i)
+                        input(value=movie.guid type="hidden" id='movie-guid-' + i)
+                        a.movie-action-link(onclick='updateMovie(' + i + ')' title="Update" id='movie-edit-' + i data-id=i) Update
+                        a.movie-action-link(onclick='deleteMovie(' + i + ')' title="Delete" id='movie-delete-' + i data-id=i) Delete
   
+      table
+        caption Add a Movie
+            thead
+                tr
+                    th Title
+                    th Format
+                    th.movie-length Length
+                    th.movie-release-year Year
+                    th.movie-rating Rating
+                    th.movie-actions Actions
+            tbody
+                tr
+                    td.movie-title
+                        input(type="text" minlength=1 maxlength=50 id='new-movie-title')
+                    td.movie-format
+                        select(id='new-movie-format')
+                            for format in movieFormats
+                                option(value=format) #{format}                                
+                    td.movie-length
+                        input(type="number" id='new-movie-length' min=0 max=500)  
+                    td.movie-release-year
+                        input(type="number" id='new-movie-release-year' min=1800 max=2100 step=1) 
+                    td.movie-rating
+                        input(type="number" id='new-movie-rating' min=1 max=5 step=1) 
+                    td.movie-actions(id='new-movie-actions')
+                        a.movie-action-link(onclick='addMovie()' title="Add" id='new-movie-add') Add
+                        a.movie-action-link(onclick='resetAddFields()' title="Reset" id='new-movie-reset') Reset
