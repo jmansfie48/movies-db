@@ -21,7 +21,7 @@ const { auth } = require('express-openid-connect');
 const config = {
     authRequired: false,
     auth0Logout: true,
-    baseURL: 'http://localhost:1337',
+    baseURL: 'http://ec2-54-165-167-218.compute-1.amazonaws.com:3000',
     clientID: 'mGDlrZzzWSRiMj0yKmAK99prXN1XTRZ9',
     issuerBaseURL: 'https://movies-db.us.auth0.com',
     secret: '6LNXJYKPmDWUSQAUXrRCx3crWaO7OZjMyEstoJC4JADe0HTdwL9cj_TEHAIE0k8L'
