@@ -6,6 +6,7 @@ An Agile Board for this exercise is available on Trello at https://trello.com/b/
 
 ## Demo
 Visit http://ec2-54-165-167-218.compute-1.amazonaws.com:3000/ to see the application in action.
+Sign up with your email address to proceed into the application. From there you can view your movies (initially you have none), add, update, or delete movies in your collection.
 
 ## Tech Stack
 
