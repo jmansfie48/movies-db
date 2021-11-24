@@ -9,7 +9,7 @@ MoviesDb.Coordination = require('../coordination/coordination.js');
 var router = express.Router();
 var fs = require('fs');
 
-/* GET movies for user */
+/* Load main app page */
 router.get('/', requiresAuth(), function (req, res) {
 
     try {
@@ -17,7 +17,19 @@ router.get('/', requiresAuth(), function (req, res) {
         res.render('movies', { title: 'My Movies', movies: myMovies.movies, movieFormats: myMovies.formats, userEmail: myMovies.email });
     } catch (err) {
         console.log(err);
-        res.status(400).send('Unable to add movie.');
+        res.status(400).send('Unable to load My Movies.');
+    }
+});
+
+/* GET movies for user */
+router.get('/get', requiresAuth(), function (req, res) {
+
+    try {
+        var myMovies = MoviesDb.Coordination.getMovies(req);
+        res.status(200).send(JSON.stringify(myMovies.movies));
+    } catch (err) {
+        console.log(err);
+        res.status(400).send('Unable to get movies.');
     }
 });
 

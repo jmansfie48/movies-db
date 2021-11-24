@@ -104,6 +104,29 @@ function deleteMovie(id) {
     }
 }
 
+// Update a movie using numeric index from page
+function testGet() {
+
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: './get',
+            type: "GET",
+            contentType: 'application/json',
+            dataType: "json"
+        })
+            .done(function (data) {
+                resolve(alert(JSON.stringify(data)));
+            })
+            .fail(function (jqXHR) {
+                reject(alert(jqXHR.responseText));
+            })
+            .always(function () {
+                window.location.href = window.location.href;
+            });
+    });
+}
+
+
 // Clear fields on the add table
 function resetAddFields() {
     $("#new-movie-title").val(null);
