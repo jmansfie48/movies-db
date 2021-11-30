@@ -30,7 +30,7 @@ MoviesDb.DataAccess = {
                 // Add the user to storage
                 try {
                     var newUserGuid = MoviesDb.DataAccess.generateGuid();
-                    user = MoviesDb.Domain.userModel(newUserGuid, authId, authEmail);
+                    user = new MoviesDb.Domain.userModel(newUserGuid, authId, authEmail);
                     allUsers.push(user);
                     var updatedUsers = MoviesDb.DataAccess.updateUsers(allUsers);
                 } catch (err) {

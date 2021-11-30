@@ -175,7 +175,7 @@ MoviesDb.Coordination = {
         try {
             if (movieToUpdate) {
                 var allMovieFormats = MoviesDb.DataAccess.getAllMovieFormats();
-                var updatedMovie = MoviesDb.Domain.movieModel(movieToUpdate.title, movieToUpdate.format, movieToUpdate.length, movieToUpdate.releaseYear, movieToUpdate.rating, allMovieFormats);
+                var updatedMovie = new MoviesDb.Domain.movieModel(movieToUpdate.title, movieToUpdate.format, movieToUpdate.length, movieToUpdate.releaseYear, movieToUpdate.rating, allMovieFormats);
                 updatedMovie.guid = guid;
                 updatedMovie.userGuid = userGuid;
                 return updatedMovie;
