@@ -26,5 +26,5 @@ Auth0 is a well-recognized authentication service with easy-to-implement access 
 Local JSON storage; I just wanted to get things working and would like to replace it with something more conventional if time permits.
 
 ### Front End
-HTML page built using the Pug template engine for Node.js + Express (https://pugjs.org/api/getting-started.html).
+HTML page built using the Pug template engine for Node.js + Express (https://pugjs.org/api/getting-started.html) and jQuery for user interactions.
 Simple implementation that afforded me the functionality I needed.
