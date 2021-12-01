@@ -20,10 +20,10 @@ const { auth } = require('express-openid-connect');
 const config = {
     authRequired: false,
     auth0Logout: true,
-    baseURL: 'http://ec2-54-165-167-218.compute-1.amazonaws.com:3000',
+    baseURL: 'http://localhost:1337',
     clientID: 'mGDlrZzzWSRiMj0yKmAK99prXN1XTRZ9',
     issuerBaseURL: 'https://movies-db.us.auth0.com',
-    secret: '6LNXJYKPmDWUSQAUXrRCx3crWaO7OZjMyEstoJC4JADe0HTdwL9cj_TEHAIE0k8L'
+    secret: '3gn2z-oQ49WGqxCitsS_4NcmTQgZMMxZNAeFIZYmyNQ0XQG7qCni7CdOKT_byEf4'
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
