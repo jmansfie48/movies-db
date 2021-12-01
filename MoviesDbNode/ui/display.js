@@ -7,30 +7,37 @@ MoviesDb.Display = {
 
     // UI: Display model for showing movies
     myMoviesModel: function (userGuid, movieFormats, movies, user) {
-        var model = {};
-        var myMovies = [];
-        if (movies && movies.length > 0) {
-            var moviesForUser = MoviesDb.DataAccess.getMoviesForUser(userGuid);
-            if (moviesForUser.length > 0) {
-                for (var i = 0; i < moviesForUser.length; i++) {
-                    var userMovie = moviesForUser[i];
-                    try {
-                        var movieModel = new MoviesDb.Display.displayMovieModel(userMovie, movieFormats, movies);
-                    } catch (err) {
-                        console.log(err);
+        return new Promise(data => {
+
+            var model = {};
+            var myMovies = [];
+            var movieFormatDropdownValues = movieFormats.map(mf => mf.description);
+            if (movies && movies.length > 0) {
+                return MoviesDb.DataAccess.getMoviesForUser(userGuid).then(function (moviesForUser) {
+                    if (moviesForUser.length > 0) {
+                        for (var i = 0; i < moviesForUser.length; i++) {
+                            var userMovie = moviesForUser[i];
+                            try {
+                                var movieModel = new MoviesDb.Display.displayMovieModel(userMovie, movieFormats, movies);
+                            } catch (err) {
+                                console.log(err);
+                            }
+                            myMovies.push(movieModel);
+                        }
+                        model.formats = movieFormatDropdownValues;
+                        model.movies = myMovies;
+                        model.email = user.email;
+                        data(model);
                     }
-                    myMovies.push(movieModel);
-                }
+                }).catch(function (err) {
+                    throw err;
+                });
             }
-        }
-        var allMovieFormats = MoviesDb.DataAccess.getAllMovieFormats();
-        var movieFormatDropdownValues = allMovieFormats.map(mf => mf.description);
-
-        model.formats = movieFormatDropdownValues;
-        model.movies = myMovies;
-        model.email = user.email;
-
-        return model;
+            model.formats = movieFormatDropdownValues;
+            model.movies = myMovies;
+            model.email = user.email;
+            data(model);
+        });
     },
 
     // UI: Display model for an individual movie

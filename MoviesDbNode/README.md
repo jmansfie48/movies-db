@@ -23,8 +23,7 @@ I am using Auth0 authentication via the Auth0 SDK (https://auth0.com/docs/quicks
 Auth0 is a well-recognized authentication service with easy-to-implement access control, and it integrates easily with other parts of the application.
 
 ### Database
-Local JSON storage; I just wanted to get things working and would like to replace it with something more conventional if time permits.
+I'm using a MySQL database hosted on AWS RDS.
 
 ### Front End
-HTML page built using the Pug template engine for Node.js + Express (https://pugjs.org/api/getting-started.html).
-Simple implementation that afforded me the functionality I needed.
+HTML page built using the Pug template engine for rendering (https://pugjs.org/api/getting-started.html) and jQuery to handle user interactions.

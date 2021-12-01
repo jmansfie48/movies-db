@@ -49,9 +49,6 @@
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
-    <Content Include="storage\movie-formats.json" />
-    <Content Include="storage\movies.json" />
-    <Content Include="storage\users.json" />
     <Content Include="views\movies.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
@@ -64,7 +61,6 @@
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="ui\" />
-    <Folder Include="storage\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />

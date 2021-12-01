@@ -11,10 +11,12 @@ var fs = require('fs');
 
 /* Load main app page */
 router.get('/', requiresAuth(), function (req, res) {
-
     try {
-        var myMovies = MoviesDb.Coordination.getMovies(req);
-        res.render('movies', { title: 'My Movies', movies: myMovies.movies, movieFormats: myMovies.formats, userEmail: myMovies.email });
+        return MoviesDb.Coordination.getMovies(req).then(function (myMovies) {
+            res.render('movies', { title: 'My Movies', movies: myMovies.movies, movieFormats: myMovies.formats, userEmail: myMovies.email });
+        }).catch(function (err) {
+            res.status(400).send('Unable to load My Movies.');
+        });
     } catch (err) {
         console.log(err);
         res.status(400).send('Unable to load My Movies.');
@@ -25,8 +27,11 @@ router.get('/', requiresAuth(), function (req, res) {
 router.get('/get', requiresAuth(), function (req, res) {
 
     try {
-        var myMovies = MoviesDb.Coordination.getMovies(req);
-        res.status(200).send(JSON.stringify(myMovies.movies));
+        return MoviesDb.Coordination.getMovies(req).then(function (myMovies) {
+            res.status(200).send(JSON.stringify(myMovies.movies));
+        }).catch(function(err) {
+            res.status(400).send('Unable to get movies.');
+        });
     } catch (err) {
         console.log(err);
         res.status(400).send('Unable to get movies.');
@@ -36,8 +41,11 @@ router.get('/get', requiresAuth(), function (req, res) {
 /* POST add a movie */
 router.post('/add', requiresAuth(), function (req, res) {
     try {
-        var response = MoviesDb.Coordination.addMovie(req);
-        res.status(response.status).send(response.message);
+        return MoviesDb.Coordination.addMovie(req).then(function (response) {
+            res.status(response.status).send(response.message);
+        }).catch(function (err) {
+            res.status(400).send('Unable to add movie.');
+        });
     } catch (err) {
         console.log(err);
         res.status(400).send('Unable to add movie.');
@@ -47,8 +55,11 @@ router.post('/add', requiresAuth(), function (req, res) {
 /* PUT update a movie */
 router.put('/update', requiresAuth(), function (req, res) {
     try {
-        var response = MoviesDb.Coordination.updateMovie(req);
-        res.status(response.status).send(response.message);
+        return MoviesDb.Coordination.updateMovie(req).then(function (response) {
+            res.status(response.status).send(response.message);
+        }).catch(function (err) {
+            res.status(400).send('Unable to update movie.');
+        });
     } catch (err) {
         console.log(err);
         res.status(400).send('Unable to update movie.');
@@ -58,8 +69,11 @@ router.put('/update', requiresAuth(), function (req, res) {
 /* DELETE a movie */
 router.delete('/delete/:guid', requiresAuth(), function (req, res) {
     try {
-        var response = MoviesDb.Coordination.deleteMovie(req);
-        res.status(response.status).send(response.message);
+        return MoviesDb.Coordination.deleteMovie(req).then(function (response) {
+            res.status(response.status).send(response.message);
+        }).catch(function (err) {
+            res.status(400).send('Unable to delete movie.');
+        });
     } catch (err) {
         console.log(err);
         res.status(400).send('Unable to delete movie.');
