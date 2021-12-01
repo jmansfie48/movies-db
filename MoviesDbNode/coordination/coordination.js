@@ -80,48 +80,62 @@ MoviesDb.Coordination = {
                             if (!movieToUpdate) {
                                 res.status = 404;
                                 res.message = 'Could not find movie with ID ' + guid + ' to update.';
+                                data(res);
                             } else {
                                 // If we found a movie to update, update it
                                 if (movieToUpdate) {
                                     return MoviesDb.DataAccess.getAllMovies().then(function (movies) {
-                                        var movieIndex = movies.findIndex(m => m.guid === guid);
-                                        return MoviesDb.Coordination.convertMovieUpdateToStoredMovie(update, update.guid, userGuid).then(function (storageReadyMovie) {
-                                            return MoviesDb.DataAccess.updateMovie(storageReadyMovie).then(function (updatedMovies) {
-                                                data(res);
-                                            }).catch(function (err) {
+                                        return MoviesDb.DataAccess.getAllMovieFormats().then(function (allMovieFormats) {
+                                            try {
+                                                var storageReadyMovie = MoviesDb.Coordination.convertMovieUpdateToStoredMovie(update, update.guid, userGuid, allMovieFormats);
+                                                return MoviesDb.DataAccess.updateMovie(storageReadyMovie).then(function (updatedMovies) {
+                                                    data(res);
+                                                }).catch(function (err) {
+                                                    res.status = 400;
+                                                    res.message = err;
+                                                    data(res);
+                                                });
+                                            } catch (err) {
                                                 res.status = 400;
                                                 res.message = err;
-                                            });
+                                                data(res);
+                                            }
                                         }).catch(function (err) {
                                             res.status = 400;
                                             res.message = err;
-                                        });
+                                            data(res);
+                                        });                                        
                                     }).catch(function (err) {
                                         res.status = 400;
                                         res.message = err;
+                                        data(res);
                                     });
                                 } else {
                                     res.status = 404;
                                     res.message = 'Could not find movie for user with ID ' + userGuid;
+                                    data(res);
                                 }
                             }
                         }).catch(function (err) {
                             res.status = 400;
                             res.message = err;
+                            data(res);
                         });
                     }).catch(function (err) {
                         res.status = 400;
                         res.message = err;
+                        data(res);
                     });
                 }).catch(function (err) {
                     res.status = 400;
                     res.message = err;
+                    data(res);
                 });
             }).catch(function (err) {
                 res.status = 400;
                 res.message = err;
+                data(res);
             });
-            data(res);
         });
     },
 
@@ -149,29 +163,41 @@ MoviesDb.Coordination = {
                             }
 
                             // Add the movie to storage
-                            return MoviesDb.Coordination.convertMovieUpdateToStoredMovie(add, guid, userGuid).then(function (storageReadyMovie) {
-                                return MoviesDb.DataAccess.addMovie(storageReadyMovie).then(function (updatedMovies) {
+                            return MoviesDb.DataAccess.getAllMovieFormats().then(function (allMovieFormats) {
+                                try {
+                                    var storageReadyMovie = MoviesDb.Coordination.convertMovieUpdateToStoredMovie(add, guid, userGuid, allMovieFormats);
+                                    return MoviesDb.DataAccess.addMovie(storageReadyMovie).then(function (updatedMovies) {
+                                        data(res);
+                                    }).catch(function (error) {
+                                        res.status = 400;
+                                        res.message = err;
+                                        data(res);
+                                    });
+                                } catch (err) {
+                                    res.status = 400;
+                                    res.message = err;
                                     data(res);
-                                });
-                            }).catch(function (err) {
-                                res.status = 400;
-                                res.message = err;
+                                }
                             });
                         }).catch(function (err) {
                             res.status = 400;
                             res.message = err;
+                            data(res);
                         });
                     }).catch(function (err) {
                         res.status = 400;
                         res.message = err;
+                        data(res);
                     });
                 }).catch(function (err) {
                     res.status = 400;
                     res.message = err;
+                    data(res);
                 });                
             }).catch(function (err) {
                 res.status = 400;
                 res.message = err;
+                data(res);
             });
         });
     },
@@ -234,19 +260,15 @@ MoviesDb.Coordination = {
     },
 
     // Convert a display movie model to a storage-ready movie
-    convertMovieUpdateToStoredMovie: function (movieToUpdate, guid, userGuid) {
-        return new Promise(data => {
-            if (movieToUpdate) {
-                return MoviesDb.DataAccess.getAllMovieFormats().then(function (allMovieFormats) {
-                    var updatedMovie = new MoviesDb.Domain.movieModel(movieToUpdate.title, movieToUpdate.format, movieToUpdate.length, movieToUpdate.releaseYear, movieToUpdate.rating, allMovieFormats);
-                    updatedMovie.guid = guid;
-                    updatedMovie.userGuid = userGuid;
-                    data(updatedMovie);
-                });
-            } else {
-                data('There is no movie update information.');
-            }
-        });
+    convertMovieUpdateToStoredMovie: function (movieToUpdate, guid, userGuid, allMovieFormats) {
+        if (movieToUpdate) {
+            var updatedMovie = new MoviesDb.Domain.movieModel(movieToUpdate.title, movieToUpdate.format, movieToUpdate.length, movieToUpdate.releaseYear, movieToUpdate.rating, allMovieFormats);
+            updatedMovie.guid = guid;
+            updatedMovie.userGuid = userGuid;
+            return updatedMovie;
+        } else {
+            throw 'There is no movie update information.';
+        }
     }
 };
 

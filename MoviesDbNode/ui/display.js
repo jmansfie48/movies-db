@@ -24,11 +24,11 @@ MoviesDb.Display = {
                             }
                             myMovies.push(movieModel);
                         }
-                        model.formats = movieFormatDropdownValues;
-                        model.movies = myMovies;
-                        model.email = user.email;
-                        data(model);
                     }
+                    model.formats = movieFormatDropdownValues;
+                    model.movies = myMovies;
+                    model.email = user.email;
+                    data(model);
                 }).catch(function (err) {
                     throw err;
                 });
