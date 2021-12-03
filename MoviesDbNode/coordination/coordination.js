@@ -29,29 +29,35 @@ MoviesDb.Coordination = {
                             if (!movieToDelete) {
                                 res.status = 404;
                                 res.message = 'Could not find movie ' + deleteGuid + ' for user with ID ' + userGuid;
+                                data(res);
                             } else {
                                 return MoviesDb.DataAccess.deleteMovie(movieToDelete).then(function (updatedMovies) {
                                     data(res);
                                 }).catch(function (err) {
                                     res.status = 400;
                                     res.message = err;
+                                    data(res);
                                 });
                             }
                         }).catch(function (err) {
                             res.status = 400;
                             res.message = err;
+                            data(res);
                         });
                     }).catch(function (err) {
                         res.status = 400;
                         res.message = err;
+                        data(res);
                     });;
                 }).catch(function (err) {
                     res.status = 400;
                     res.message = err;
+                    data(res);
                 });;
             }).catch(function (err) {
                 res.status = 400;
                 res.message = err;
+                data(res);
             });
             data(res);
         });
